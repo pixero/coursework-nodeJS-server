@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 
 const path = __dirname + '/views/';
 const port = 8080;
@@ -9,6 +10,8 @@ const jwt = require('jsonwebtoken');
 app.use(express.static(path));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.options('*', cors());
 
 
 app.post('/auth',(req,res)=>{
