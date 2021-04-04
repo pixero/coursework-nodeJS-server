@@ -4,7 +4,7 @@ const app = express();
 const path = __dirname + '/views/';
 const port = 8080;
 
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 app.use(express.static(path));
 app.use(express.json());
@@ -19,7 +19,7 @@ app.post('/auth',(req,res)=>{
   res.send(token);
 })
 
-app.get('/registration',(req,res)=>{
+app.post('/registration',(req,res)=>{
   res.send(true)
 })
 
