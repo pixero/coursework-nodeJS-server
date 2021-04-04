@@ -1,18 +1,26 @@
 const express = require('express');
-const https = require('https');
-const http = require('http');
 const app = express();
 
 const path = __dirname + '/views/';
 const port = 8080;
 
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer(app);
+var jwt = require('jsonwebtoken');
 
 app.use(express.static(path));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/test',(req,res)=>{
-  res.send("work");
+
+app.post('/auth',(req,res)=>{
+  console.log(req.body)
+  const token = jwt.sign({
+    data: `${req.body.name},${req.body.password}`
+  },'secret');
+  res.send(token);
+})
+
+app.get('/registration',(req,res)=>{
+  res.send(true)
 })
 
 app.listen(port, function () {
