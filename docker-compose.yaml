@@ -13,7 +13,7 @@ services:
             - mongodb
         restart: always
     mongodb:
-        build: ./data
+        image: mongo:latest
         container_name: "mongodb"
         environment:
             - PUID=1000
