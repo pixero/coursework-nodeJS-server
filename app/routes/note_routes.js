@@ -59,8 +59,8 @@ module.exports = (app,db)=>{
         const oldUser = await findUserByName(db,note.email);
         console.log(user);
 
-        //user - условие, чтобы проверить, что такого пользователя нет
-        //note - данные нового пользователя
+        //oldUser - условие, чтобы проверить, что такого пользователя нет
+        //newUserData - данные нового пользователя
         createUser(oldUser,newUserData);
     })
 }
