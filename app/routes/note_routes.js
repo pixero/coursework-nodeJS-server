@@ -64,5 +64,3 @@ module.exports = (app,db)=>{
         createUser(oldUser,newUserData);
     })
 }
-
-console.log("test branch")
