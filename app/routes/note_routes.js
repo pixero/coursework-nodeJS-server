@@ -21,6 +21,21 @@ const  authenticateToken = (req, res, next) => {
         next();
     })
 }
+const createUser = (conditions,user)=>{
+    if(!conditions) {
+        db.collection('users').insert(user, (err, result) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(true);
+            }
+        });
+    } else {
+        res.status(400);
+        res.send({"message":"Пользователь с такими данными уже существует"})
+    }
+}
+
 
 module.exports = (app,db)=>{
 
@@ -40,21 +55,14 @@ module.exports = (app,db)=>{
     })
 
     app.post('/registration',async (req,res)=>{
-        const note = { email: req.body.email, password: req.body.password };
-        const user = await findUserByName(db,note.email);
+        const  newUserData = { email: req.body.email, password: req.body.password };
+        const oldUser = await findUserByName(db,note.email);
         console.log(user);
-        if(!user) {
-            db.collection('users').insert(note, (err, result) => {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.send(true);
-                }
-            });
-        } else {
-            res.status(400);
-            res.send({"message":"Пользователь с такими данными уже существует"})
-        }
+
+        //user - условие, чтобы проверить, что такого пользователя нет
+        //note - данные нового пользователя
+        createUser(oldUser,newUserData);
     })
 }
 
+console.log("test branch")
