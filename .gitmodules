@@ -1,0 +1,3 @@
+[submodule "CourseProject-Front"]
+	path = CourseProject-Front
+	url = https://github.com/Aleksandr-Merkulov/CourseProject-Front.git
