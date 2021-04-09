@@ -1,4 +1,4 @@
 module.exports = {
-    url:'mongodb://127.0.0.1:27017/course-work',
+    url:'mongodb://mongodb:27017/course-work',
     dbName:'course-work'
 }

@@ -6,7 +6,7 @@ services:
         volumes:
             - /app
         ports:
-            - 8081:8080
+            - 8080:8080
         links:
             - mongodb
         depends_on:
