@@ -1,3 +1,6 @@
 [submodule "CourseProject-Front"]
 	path = front
 	url = https://github.com/Aleksandr-Merkulov/CourseProject-Front.git
+[submodule "coursework-nodeJS-server"]
+    path = server
+    url = https://github.com/pixero/coursework-nodeJS-server.git

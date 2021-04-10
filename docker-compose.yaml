@@ -1,0 +1,31 @@
+version: '2'
+services:
+    myapp:
+        build: server/app
+        container_name: "myapp"
+        volumes:
+            - server/app
+        ports:
+            - 8080:8080
+        links:
+            - mongodb
+        depends_on:
+            - mongodb
+        restart: always
+    mongodb:
+        image: mongo:latest
+        container_name: "mongodb"
+        environment:
+            - PUID=1000
+            - PGID=1000
+        volumes:
+          - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --logpath=/dev/null # --quiet
+        restart: unless-stopped
+    front:
+        build: ./front
+        ports:
+        -   3000:3000
+        restart: always
