@@ -56,5 +56,23 @@ module.exports = (app,db)=>{
             res.send({"message":"Пользователь с такими данными уже существует"})
         }
     })
+    app.get('/tests',(req,rees)=>{
+        const data = db.collection('tests').find().toArray();
+        req.send(data);
+    })
+    app.post('/test',(req,rees)=>{
+        db.collection('tests').insert(req.body, (err, result) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        });
+    })
+    app.get('/:type(test)/:id',async (req,res)=>{
+        const id = req.url.match(/(?:[a-f\d]{24}$)/g);
+        const data = await db.collection('tests').find({_id:mongoose.Types.ObjectId(id[0])}).toArray();
+        res.send(data);
+    })
 }
 
