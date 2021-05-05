@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+const mongoose          = require('mongoose');
 
 const findUserByName = async (db,currentEmail) =>{
      return await db.collection('users').findOne({email:currentEmail});
@@ -56,11 +56,11 @@ module.exports = (app,db)=>{
             res.send({"message":"Пользователь с такими данными уже существует"})
         }
     })
-    app.get('/tests',(req,rees)=>{
-        const data = db.collection('tests').find().toArray();
-        req.send(data);
+    app.get('/tests',async (req,res)=>{
+        const data = await db.collection('tests').find().toArray();
+        res.send(data);
     })
-    app.post('/test',(req,rees)=>{
+    app.post('/test',(req,res)=>{
         db.collection('tests').insert(req.body, (err, result) => {
             if (err) {
                 res.send(err);
