@@ -60,6 +60,13 @@ module.exports = (app,db)=>{
         const data = await db.collection('tests').find().toArray();
         res.send(data);
     })
+    app.delete('/tests',async (req,res)=>{
+        console.log(req.body.id)
+        await db.collection('tests').deleteOne({_id:mongoose.Types.ObjectId(req.body.id)},(err,result)=>{
+            if(err) res.send(err);
+            else res.send(result);
+        })
+    })
     app.post('/test',(req,res)=>{
         db.collection('tests').insert(req.body, (err, result) => {
             if (err) {
