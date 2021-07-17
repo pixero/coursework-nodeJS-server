@@ -22,7 +22,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', ()=> {
     require('./routes')(app, db);
-    app.listen(port, () => {
+    app.listen(process.env.PORT ||port, () => {
         console.log('Server working on port: ' + port);
     });
 });
