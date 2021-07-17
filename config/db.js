@@ -1,4 +1,4 @@
 module.exports = {
-    url:'mongodb://mongodb:27017/course-work',
+    url:'mongodb+srv://pixero:pixeroroot@cluster0.k0jiu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     dbName:'course-work'
 }
