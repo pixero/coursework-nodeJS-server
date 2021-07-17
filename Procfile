@@ -1,1 +1,1 @@
-web: npm startgit a
+web: npm start
