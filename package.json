@@ -9,6 +9,11 @@
     "type": "git",
     "url": "https://github.com/katjuell/nodejs-image-demo.git"
   },
+  "scripts": {
+    "build": "npm install",
+    "prestart": "npm run build",
+    "start": "node app.js"
+  },
   "keywords": [
     "nodejs",
     "bootstrap",
